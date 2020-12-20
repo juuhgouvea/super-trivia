@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/configGameFragment">
+
+    <fragment
+        android:id="@+id/configGameFragment"
+        android:name="com.juuhgouvea.supertrivia.fragments.ConfigGameFragment"
+        android:label="fragment_config_game"
+        tools:layout="@layout/fragment_config_game" />
+</navigation>
