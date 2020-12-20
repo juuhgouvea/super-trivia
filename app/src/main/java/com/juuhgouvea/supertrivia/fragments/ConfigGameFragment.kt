@@ -1,15 +1,15 @@
 package com.juuhgouvea.supertrivia.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.juuhgouvea.supertrivia.R
+import com.juuhgouvea.supertrivia.adapters.CategoryAdapter
 import com.juuhgouvea.supertrivia.models.Difficulty
-import kotlinx.android.synthetic.main.fragment_config_game.*
 import kotlinx.android.synthetic.main.fragment_config_game.view.*
 
 class ConfigGameFragment : Fragment() {
@@ -23,6 +23,9 @@ class ConfigGameFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             view.selectDifficulty.adapter = adapter
         }
+
+        view.listCategories.adapter = CategoryAdapter()
+        view.listCategories.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         return view
     }
