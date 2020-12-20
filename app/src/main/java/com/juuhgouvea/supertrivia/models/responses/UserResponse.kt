@@ -5,8 +5,8 @@ import com.juuhgouvea.supertrivia.models.User
 data class UserResponse(
     var status: String,
     var data: ResponseData
-)
-
-data class ResponseData(
-    var user: User
-)
+) {
+    data class ResponseData(
+        var user: User
+    )
+}
