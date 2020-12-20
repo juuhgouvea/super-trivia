@@ -1,8 +1,15 @@
-    <resources>
+<resources>
     <string name="app_name" translatable="false">Super Trivia</string>
-        <string name="email">E-mail</string>
-        <string name="password">Password</string>
-        <string name="confirm_password">Confirm Password</string>
-        <string name="login">Login</string>
-        <string name="blank_credentials">Type your credentials</string>
-    </resources>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="blank_credentials">Type your credentials</string>
+    <string name="config_game">Choose a difficulty and a category to start playing</string>
+    <string-array name="difficulty">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+    <string name="select_difficulty">Select Difficulty</string>
+</resources>

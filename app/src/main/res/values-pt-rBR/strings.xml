@@ -5,4 +5,11 @@
     <string name="confirm_password">Confirmar Senha</string>
     <string name="login">Entrar</string>
     <string name="blank_credentials">Informe suas credenciais</string>
+    <string name="config_game">Escolha uma dificuldade e uma categoria para começar a jogar</string>
+    <string-array name="difficulty">
+        <item>Fácil</item>
+        <item>Médio</item>
+        <item>Dificíl</item>
+    </string-array>
+    <string name="select_difficulty">Selecione a dificuldade</string>
 </resources>
