@@ -14,4 +14,10 @@
     <string name="select_difficulty">Selecione a dificuldade</string>
     <string name="select_category">Selecione a categoria</string>
     <string name="start_game">Iniciar Jogo</string>
+    <string name="answer">Responder</string>
+    <string name="category">Categoria</string>
+    <string name="difficulty">Dificuldade</string>
+    <string name="save">Salvar</string>
+    <string name="selected_category">Categoria: %1$s</string>
+    <string name="selected_difficulty">Dificuldade: %1$s</string>
 </resources>
