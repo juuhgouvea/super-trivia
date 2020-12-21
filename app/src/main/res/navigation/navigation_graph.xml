@@ -9,5 +9,23 @@
         android:id="@+id/configGameFragment"
         android:name="com.juuhgouvea.supertrivia.fragments.ConfigGameFragment"
         android:label="fragment_config_game"
-        tools:layout="@layout/fragment_config_game" />
+        tools:layout="@layout/fragment_config_game" >
+        <action
+            android:id="@+id/navigateToStartGame"
+            app:destination="@id/startGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.juuhgouvea.supertrivia.fragments.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/startGameFragment"
+        android:name="com.juuhgouvea.supertrivia.fragments.StartGameFragment"
+        android:label="fragment_start_game"
+        tools:layout="@layout/fragment_start_game" >
+        <action
+            android:id="@+id/navigateToGame"
+            app:destination="@id/gameFragment" />
+    </fragment>
 </navigation>
