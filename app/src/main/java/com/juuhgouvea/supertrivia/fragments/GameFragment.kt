@@ -8,13 +8,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juuhgouvea.supertrivia.R
 import com.juuhgouvea.supertrivia.adapters.AnswerAdapter
+import com.juuhgouvea.supertrivia.dao.AnswerDAO
 import com.juuhgouvea.supertrivia.dao.ProblemDAO
 import kotlinx.android.synthetic.main.fragment_game.view.*
 
 class GameFragment : Fragment() {
+    private val problemDao = ProblemDAO()
+    private val answerDao = AnswerDAO()
     private val answerAdapter = AnswerAdapter()
 
     override fun onCreateView(
@@ -26,6 +30,10 @@ class GameFragment : Fragment() {
         view.listAnswer.adapter = answerAdapter
         view.listAnswer.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        view.btnAnswer.setOnClickListener {
+            answer()
+        }
 
         showProblem(view)
 
@@ -52,12 +60,41 @@ class GameFragment : Fragment() {
         return hasOpenProblem
     }
 
-    fun showProblem(view: View) {
-        val token = requireContext()
+    fun getToken(): String {
+        return requireContext()
             .getSharedPreferences("auth", Context.MODE_PRIVATE)
-            .getString("token", "")
+            .getString("token", "")!!
+    }
 
-        val problemDao = ProblemDAO()
+    fun answer() {
+        val token = getToken()
+        val selectedAnswer = answerAdapter.getSelectedAnswer()
+        if(selectedAnswer == null) {
+            return
+        }
+
+        answerDao.answer(token, selectedAnswer.order) { response ->
+            val isCorrect = response.data.answer.correctAnswer.order == selectedAnswer.order
+            val score = response.data.answer.score
+
+            requireContext()
+                .getSharedPreferences("game", Context.MODE_PRIVATE)
+                .edit().apply {
+                    putBoolean("has_open_problem", false)
+                    putLong("score", score)
+                    apply()
+                }
+
+            val bundle = Bundle()
+            bundle.putLong("score", score)
+            bundle.putBoolean("isCorrect", isCorrect)
+            findNavController().navigate(R.id.askToContinueFragment, bundle)
+        }
+    }
+
+    fun showProblem(view: View) {
+        val token = getToken()
+
         if(hasOpenProblem()) {
             problemDao.view(token!!) { response ->
                 view.lbProblem.text = formatHtml(response.data.problem.question)
