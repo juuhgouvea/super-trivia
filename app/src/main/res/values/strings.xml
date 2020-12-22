@@ -20,6 +20,12 @@
     <string name="save">Save</string>
     <string name="selected_category">Category: %1$s</string>
     <string name="selected_difficulty">Difficulty: %1$s</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="incorrect_answer">Incorrect Answer</string>
+    <string name="show_score">Score: %1$d</string>
+    <string name="next">Next</string>
+    <string name="stop_playing">Finish Game</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <!-- TODO: Remove or change this placeholder text -->
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

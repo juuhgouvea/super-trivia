@@ -20,4 +20,9 @@
     <string name="save">Salvar</string>
     <string name="selected_category">Categoria: %1$s</string>
     <string name="selected_difficulty">Dificuldade: %1$s</string>
+    <string name="correct_answer">Resposta Correta</string>
+    <string name="incorrect_answer">Resposta Incorreta</string>
+    <string name="show_score">Pontuação: %1$d</string>
+    <string name="next">Próxima</string>
+    <string name="stop_playing">Terminar Jogo</string>
 </resources>
