@@ -10,11 +10,11 @@ data class AnswerResponse(
 ) {
     data class ResponseData(
         var answer: ResponseAnswer,
-        var score: Long
     ) {
         data class ResponseAnswer(
                 var status: String,
-                @SerializedName("correct_answer") var correctAnswer: Answer
+                @SerializedName("correct_answer") var correctAnswer: Answer,
+                var score: Long
         )
     }
 }
