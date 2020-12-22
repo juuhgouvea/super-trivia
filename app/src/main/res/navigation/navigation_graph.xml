@@ -48,5 +48,17 @@
             android:name="score"
             app:argType="long"
             android:defaultValue="0L" />
+        <action
+            android:id="@+id/navigateToGameOver"
+            app:destination="@id/gameOverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.juuhgouvea.supertrivia.fragments.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/navigateToNewGame"
+            app:destination="@id/startGameFragment" />
     </fragment>
 </navigation>

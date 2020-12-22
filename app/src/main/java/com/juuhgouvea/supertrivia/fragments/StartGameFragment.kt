@@ -23,10 +23,9 @@ class StartGameFragment : Fragment() {
 
         val(difficulty, category) = getSettings()
         view.lbSelectedCategory.text = getString(R.string.selected_category, category?.name)
-        view.lbSelectedDifficulty.text = getString(R.string.selected_difficulty, difficulty?.name)
+        view.lbSelectedDifficulty.text = getString(resources.getIdentifier(difficulty, "string", requireContext().packageName))
         view.btnStartGame.setOnClickListener {
             startGame()
-            navigateToGame()
         }
 
         return view
@@ -44,7 +43,7 @@ class StartGameFragment : Fragment() {
             .getString("token", "")
         val (difficulty, category) = getSettings()
 
-        gameDao.start(token!!, difficulty!!.value, category?.id.toString()) { response ->
+        gameDao.start(token!!, difficulty!!, category?.id.toString()) { response ->
             requireContext()
                 .getSharedPreferences("game", Context.MODE_PRIVATE)
                 .edit()
@@ -55,20 +54,21 @@ class StartGameFragment : Fragment() {
 
                     apply()
                 }
+
+            navigateToGame()
         }
     }
 
-    fun getSettings(): Pair<Difficulty?, Category?> {
+    fun getSettings(): Pair<String?, Category?> {
         val settingsPreference = requireContext()
             .getSharedPreferences("settings", Context.MODE_PRIVATE)
 
         val difficultyValue = settingsPreference.getString("difficulty_value", "easy")
-        val difficultyName = settingsPreference.getString("difficulty_name", "")
         val categoryId = settingsPreference.getLong("category_id", -1)
         val categoryName = settingsPreference.getString("category_name", "")
 
         return Pair(
-            Difficulty(difficultyName!!, difficultyValue!!),
+            difficultyValue!!,
             Category(categoryId, categoryName!!)
         )
     }

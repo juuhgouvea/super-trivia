@@ -2,6 +2,7 @@ package com.juuhgouvea.supertrivia.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,17 +56,15 @@ class ConfigGameFragment : Fragment() {
                     putString("category_name", "Random")
                 }
                 putString("difficulty", selectedDifficulty.value)
-                putString("difficulty_name", selectedDifficulty.name)
                 apply()
             }
     }
 
     fun getDifficulties(): List<Difficulty> {
-        val difficultiesText = resources.getStringArray(R.array.difficulty)
         val difficulties = listOf<Difficulty>(
-            Difficulty(difficultiesText[0], "easy"),
-            Difficulty(difficultiesText[1], "medium"),
-            Difficulty(difficultiesText[2], "hard")
+            Difficulty(getString(R.string.easy), "easy"),
+            Difficulty(getString(R.string.medium), "medium"),
+            Difficulty(getString(R.string.hard), "hard")
         )
 
         return difficulties

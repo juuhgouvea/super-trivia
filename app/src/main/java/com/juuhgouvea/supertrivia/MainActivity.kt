@@ -12,8 +12,11 @@ class MainActivity : AppCompatActivity() {
 
         if(isConfigured()) {
             if(isPlaying()) {
+                findNavController(R.id.navHostFragment).popBackStack(R.id.startGameFragment, true)
+                findNavController(R.id.navHostFragment).popBackStack(R.id.configGameFragment, true)
                 findNavController(R.id.navHostFragment).navigate(R.id.gameFragment)
             } else {
+                findNavController(R.id.navHostFragment).popBackStack(R.id.configGameFragment, true)
                 findNavController(R.id.navHostFragment).navigate(R.id.startGameFragment)
             }
         }

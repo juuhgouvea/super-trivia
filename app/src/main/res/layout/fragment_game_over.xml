@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.GameOverFragment" >
+
+    <TextView
+        android:id="@+id/lbPlayerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Player Name" />
+
+    <TextView
+        android:id="@+id/lbCategoryName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/selected_category"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbPlayerName"
+        app:layout_constraintStart_toStartOf="@+id/lbPlayerName"
+        app:layout_constraintTop_toBottomOf="@+id/lbPlayerName" />
+
+    <TextView
+        android:id="@+id/lbDifficultyName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/selected_difficulty"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbCategoryName"
+        app:layout_constraintStart_toStartOf="@+id/lbCategoryName"
+        app:layout_constraintTop_toBottomOf="@+id/lbCategoryName" />
+
+    <TextView
+        android:id="@+id/lbStartedAt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/started_at"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbDifficultyName"
+        app:layout_constraintStart_toStartOf="@+id/lbDifficultyName"
+        app:layout_constraintTop_toBottomOf="@+id/lbDifficultyName" />
+
+    <TextView
+        android:id="@+id/lbFinishedAt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/finished_at"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbStartedAt"
+        app:layout_constraintStart_toStartOf="@+id/lbStartedAt"
+        app:layout_constraintTop_toBottomOf="@+id/lbStartedAt" />
+
+    <TextView
+        android:id="@+id/lbTotalScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/show_score"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lbFinishedAt"
+        app:layout_constraintStart_toStartOf="@+id/lbFinishedAt"
+        app:layout_constraintTop_toBottomOf="@+id/lbFinishedAt" />
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/continue_string"
+        app:layout_constraintEnd_toEndOf="@+id/lbTotalScore"
+        app:layout_constraintStart_toStartOf="@+id/lbTotalScore"
+        app:layout_constraintTop_toBottomOf="@+id/lbTotalScore" />
+</androidx.constraintlayout.widget.ConstraintLayout>
