@@ -9,7 +9,7 @@ interface GameService {
     fun start(
         @Header("Authorization") token: String,
         @Query("difficulty") difficulty: String,
-        @Query("category") category: String?
+        @Query("category_id") category: String?
     ): Call<GameResponse>
 
     @DELETE("games")
