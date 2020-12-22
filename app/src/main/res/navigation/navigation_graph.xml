@@ -18,7 +18,11 @@
         android:id="@+id/gameFragment"
         android:name="com.juuhgouvea.supertrivia.fragments.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/navigateToAskToContinue"
+            app:destination="@id/askToContinueFragment" />
+    </fragment>
     <fragment
         android:id="@+id/startGameFragment"
         android:name="com.juuhgouvea.supertrivia.fragments.StartGameFragment"
@@ -27,5 +31,22 @@
         <action
             android:id="@+id/navigateToGame"
             app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/askToContinueFragment"
+        android:name="com.juuhgouvea.supertrivia.fragments.AskToContinueFragment"
+        android:label="fragment_ask_to_continue"
+        tools:layout="@layout/fragment_ask_to_continue" >
+        <action
+            android:id="@+id/navigateToResumeGame"
+            app:destination="@id/gameFragment" />
+        <argument
+            android:name="isCorrect"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="score"
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
 </navigation>
