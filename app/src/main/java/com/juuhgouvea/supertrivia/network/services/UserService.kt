@@ -11,4 +11,8 @@ interface UserService {
     @POST("auth")
     @Headers("Content-Type: application/json")
     fun login(@Body user: User): Call<UserResponse>
+
+    @POST("users")
+    @Headers("Content-Type: application/json")
+    fun register(@Body user: User): Call<UserResponse>
 }

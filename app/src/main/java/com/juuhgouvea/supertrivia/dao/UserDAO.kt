@@ -32,4 +32,19 @@ class UserDAO {
 
         })
     }
+
+    fun register(user: User, finished: (response: UserResponse) -> Unit) {
+        service.register(user).enqueue(object : Callback<UserResponse> {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                response?.body()?.let { response ->
+                    finished(response)
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Log.e("login_error", t?.message)
+            }
+
+        })
+    }
 }

@@ -28,4 +28,7 @@
     <string name="medium">Médio</string>
     <string name="hard">Díficil</string>
     <string name="settings">Configurações</string>
+    <string name="register">Registrar-se</string>
+    <string name="name">Nome</string>
+    <string name="password_not_match">Senha e a confirmação de senha não correspondem</string>
 </resources>

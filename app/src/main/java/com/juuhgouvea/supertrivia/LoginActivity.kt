@@ -14,12 +14,40 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if(isLoggedIn()) {
+            goToMain()
+        }
+
+        btnRegisterLink.setOnClickListener {
+            goToRegister()
+        }
         btnLogin.setOnClickListener {
             val email = inputEmail.text.toString()
             val password = inputPassword.text.toString()
 
             loginHandler(email, password)
         }
+    }
+
+    private fun isLoggedIn(): Boolean {
+        val token = this.getSharedPreferences("auth", Context.MODE_PRIVATE)
+            .getString("token", "")
+
+        return !token!!.isEmpty()
+    }
+
+    private fun goToMain() {
+        var intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+
+        startActivity(intent)
+    }
+
+    private fun goToRegister() {
+        var intent = Intent(this, RegisterActivity::class.java)
+
+        startActivity(intent)
     }
 
     private fun loginHandler(email: String, password: String) {
@@ -40,8 +68,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     .apply()
 
-            var intent = Intent(this, MainActivity::class.java);
-            startActivity(intent);
+            goToMain()
         }
     }
 }
