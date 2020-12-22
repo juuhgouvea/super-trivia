@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                 .getSharedPreferences("game", Context.MODE_PRIVATE)
                 .getString("status", "")
 
-        return gameStatus!!.equals("playing")
+        return !gameStatus!!.equals("finished")
     }
 
     fun isConfigured(): Boolean {
