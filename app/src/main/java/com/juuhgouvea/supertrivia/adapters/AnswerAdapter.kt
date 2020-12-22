@@ -1,5 +1,7 @@
 package com.juuhgouvea.supertrivia.adapters
 
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,22 @@ class AnswerAdapter: RecyclerView.Adapter<AnswerAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun getSelectedAnswer(): Answer? {
+        return this.selectedAnswer
+    }
+
+    // Reference: https://stackoverflow.com/questions/2918920/decode-html-entities-in-android
+    fun formatHtml(htmlString: String): String {
+        if (Build.VERSION.SDK_INT >= 24)
+        {
+            return Html.fromHtml(htmlString , Html.FROM_HTML_MODE_LEGACY).toString()
+        }
+        else
+        {
+            return Html.fromHtml(htmlString).toString()
+        }
+    }
+
     override fun getItemCount() = answers.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -33,7 +51,7 @@ class AnswerAdapter: RecyclerView.Adapter<AnswerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun fillView(answer: Answer) {
-            itemView.rbAnswer.text = answer.description
+            itemView.rbAnswer.text = formatHtml(answer.description)
 
             itemView.rbAnswer.setOnClickListener { view ->
                 if(selectedAnswer != null) {
