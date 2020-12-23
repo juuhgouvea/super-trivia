@@ -37,6 +37,11 @@ Há 3 principais arquivos de preferences, sendo eles:
 - **settings**: Armazena as configurações do jogo (categoria e dificuldade).
 - **game**: Armazena informações do jogo como status, inicio do jogo e etc.
 
+## Recursos utilizados no desenvolvimento
+A aplicação foi feita inteiramente em **Android**, utilizando as seguintes bibliotecas:
+- **Retrofit** para realizar requisições HTTP
+- **Gson** para serialização de JSON
+- **Navigation Framework** para navegação na aplicação, utilizando também um BottomNavigationView.
 ## Screencast
 
 ### [Abrir Screencast no Youtube](https://youtu.be/gWP0hBYVy8g)
