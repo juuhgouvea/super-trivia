@@ -44,6 +44,13 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         return this.selectedCategory
     }
 
+    fun setSelectedCategory(category: Category?) {
+        this.selectedCategory = category
+        if(category != null) {
+            notifyItemChanged(categories.indexOf(category))
+        }
+    }
+
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun fillView(category: Category) {
             itemView.lbCategory.text = category.name

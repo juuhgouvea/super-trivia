@@ -27,6 +27,11 @@ class GameFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
+        if(!isConfigured() || !isPlaying()) {
+            findNavController().popBackStack(R.id.gameFragment, true)
+            findNavController().navigate(R.id.configGameFragment)
+        }
+
         view.listAnswer.adapter = answerAdapter
         view.listAnswer.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -50,6 +55,26 @@ class GameFragment : Fragment() {
         {
            return Html.fromHtml(htmlString).toString()
         }
+    }
+
+    fun isPlaying(): Boolean {
+        val gameStatus = requireContext()
+                .getSharedPreferences("game", Context.MODE_PRIVATE)
+                .getString("status", "")
+
+        return !gameStatus.equals("finished")
+    }
+
+    fun isConfigured(): Boolean {
+        val categoryName = requireContext()
+                .getSharedPreferences("settings", Context.MODE_PRIVATE)
+                .getString("category_name", "")
+
+        val difficulty = requireContext()
+                .getSharedPreferences("settings", Context.MODE_PRIVATE)
+                .getString("difficulty", "")
+
+        return !categoryName!!.isEmpty() && !difficulty!!.isEmpty()
     }
 
     fun hasOpenProblem(): Boolean {

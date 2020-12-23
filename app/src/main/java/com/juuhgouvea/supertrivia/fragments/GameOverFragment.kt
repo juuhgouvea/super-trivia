@@ -24,12 +24,12 @@ class GameOverFragment : Fragment() {
         view.lbPlayerName.text = results.get("player")
         view.lbCategoryName.text = getString(R.string.selected_category, results.get("category"))
         view.lbDifficultyName.text = getString(resources.getIdentifier(results.get("difficulty"), "string", requireContext().packageName))
-        view.lbStartedAt.text = results.get("started_at")
-        view.lbFinishedAt.text = results.get("finished_at")
+        view.lbStartedAt.text = getString(R.string.started_at, results.get("started_at"))
+        view.lbFinishedAt.text = getString(R.string.finished_at, results.get("finished_at"))
         view.lbTotalScore.text = getString(R.string.show_score, results.get("score")?.toLong())
 
         view.btnContinue.setOnClickListener {
-            findNavController().navigate(R.id.navigateToNewGame)
+            findNavController().navigate(R.id.configGameFragment)
         }
 
         return view
