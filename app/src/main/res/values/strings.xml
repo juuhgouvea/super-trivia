@@ -35,4 +35,6 @@
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="password_not_match">Password and Confirm Password dont match</string>
+    <string name="invalid_credentials">The credentials are invalid</string>
+    <string name="connection_error">It was not possible to establish a connection. Try again later.</string>
 </resources>

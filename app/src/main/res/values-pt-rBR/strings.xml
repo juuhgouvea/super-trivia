@@ -31,4 +31,6 @@
     <string name="register">Registrar-se</string>
     <string name="name">Nome</string>
     <string name="password_not_match">Senha e a confirmação de senha não correspondem</string>
+    <string name="invalid_credentials">As credenciais são inválidas</string>
+    <string name="connection_error">Não foi possível estabelecer uma conexão. Tente novamente mais tarde.</string>
 </resources>
