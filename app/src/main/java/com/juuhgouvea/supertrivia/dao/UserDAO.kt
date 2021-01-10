@@ -1,8 +1,11 @@
 package com.juuhgouvea.supertrivia.dao
 
+import android.content.res.Resources
 import android.util.Log
+import com.juuhgouvea.supertrivia.R
 import com.juuhgouvea.supertrivia.models.User
 import com.juuhgouvea.supertrivia.models.responses.UserResponse
+import com.juuhgouvea.supertrivia.models.responses.errors.ErrorResponse
 import com.juuhgouvea.supertrivia.network.services.UserService
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,15 +21,25 @@ class UserDAO {
 
     val service = retrofit.create(UserService::class.java)
 
-    fun login(user: User, finished: (response: UserResponse) -> Unit) {
+    fun login(user: User, finished: (response: UserResponse) -> Unit, fail: (response: ErrorResponse?) -> Unit) {
         service.login(user).enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                response?.body()?.let { response ->
-                    finished(response)
+                if(response.isSuccessful()) {
+                    response?.body()?.let { response ->
+                        finished(response)
+                    }
+                } else {
+                    try {
+                        val errorResponse = ErrorResponse.parseJson(retrofit, response.errorBody())
+                        fail(errorResponse)
+                    } catch(e: Exception) {
+                        fail(ErrorResponse("fail", "Connection Error"))
+                    }
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                fail(ErrorResponse("fail", "Connection Error"))
                 Log.e("login_error", t?.message)
             }
 
@@ -42,7 +55,7 @@ class UserDAO {
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                Log.e("login_error", t?.message)
+                Log.e("register_error", t?.message)
             }
 
         })

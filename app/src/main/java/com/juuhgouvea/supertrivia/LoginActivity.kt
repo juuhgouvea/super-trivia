@@ -5,13 +5,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.juuhgouvea.supertrivia.dao.UserDAO
 import com.juuhgouvea.supertrivia.models.User
+import com.juuhgouvea.supertrivia.models.responses.errors.handlers.LoginErrorHandler
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     private var loaderModal: View? = null
+    private var errorMessageView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
             return
         }
+
 
         setContentView(R.layout.activity_login)
 
@@ -34,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         this.loaderModal = loaderContainer
+        this.errorMessageView = errorMessage
     }
 
     private fun isLoggedIn(): Boolean {
@@ -68,20 +73,28 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
+        this.errorMessageView?.visibility = View.GONE
         val userDao = UserDAO()
         showLoading(true)
-        userDao.login(User(email, "", password, "")) { response ->
+        userDao.login(User(email, "", password, ""), { response ->
             val loggedUser = response.data.user
             getSharedPreferences("auth", Context.MODE_PRIVATE)
-                    .edit().apply {
-                        putString("token", loggedUser.token)
-                        putString("name", loggedUser.name)
-                        putString("email", loggedUser.email)
-                    }
-                    .apply()
+                .edit().apply {
+                    putString("token", loggedUser.token)
+                    putString("name", loggedUser.name)
+                    putString("email", loggedUser.email)
+                }
+                .apply()
 
             showLoading(false)
             goToMain()
-        }
+        },
+        { errorResponse ->
+            var message = getString(R.string.invalid_credentials)
+            message = LoginErrorHandler(errorResponse!!).getMessage()
+            this.errorMessageView?.visibility = View.VISIBLE
+            this.errorMessageView?.text = message
+            showLoading(false)
+        })
     }
 }
