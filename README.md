@@ -1,6 +1,10 @@
 # Super Trivia
 > Aplicativo para resolução de quizzes (jogo de perguntas e respostas) feito em Android.
 
+<p align="center">
+  <img src=".github/super-trivia-demo.gif" width="50%">
+</p>
+
 ## Funcionalidades desenvolvidas
 - [X] Registro de usuários
 - [X] Autenticação
@@ -27,6 +31,10 @@ Para maior organização da aplicação foi criada a seguinte estrutura (Além d
   - Classes de definição de dados
 - ### **models/responses/**
   - Classes que irão auxiliar na serialização de JSON, já que a API utiliza o padrão JSend.
+- ### **models/responses/errors**
+  - Classes que irão auxiliar na serialização de JSON de respostas que falharam, ou seja, que geraram exceções.
+- ### **models/responses/errors/handlers**
+  - Classes que irão auxiliar a lidar com erros, em geral na parte de internacionalização de mensagens de erro.
 - ### **network/services**
   - Interfaces que descrevem as requisiçoes HTTP feitas pelo Retrofit
 
