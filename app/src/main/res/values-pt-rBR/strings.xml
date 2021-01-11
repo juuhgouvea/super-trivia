@@ -33,4 +33,8 @@
     <string name="password_not_match">Senha e a confirmação de senha não correspondem</string>
     <string name="invalid_credentials">As credenciais são inválidas</string>
     <string name="connection_error">Não foi possível estabelecer uma conexão. Tente novamente mais tarde.</string>
+    <string name="required_input">O campo %1$s é obrigatório</string>
+    <string name="email_taken">Email indisponível</string>
+    <string name="invalid_input">%1$s inválido(a)</string>
+    <string name="too_short_input">%1$s deve ter ao menos %2$d caracteres</string>
 </resources>
