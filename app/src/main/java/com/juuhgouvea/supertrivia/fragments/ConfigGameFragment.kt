@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.juuhgouvea.supertrivia.MainActivity
 import com.juuhgouvea.supertrivia.R
 import com.juuhgouvea.supertrivia.adapters.CategoryAdapter
 import com.juuhgouvea.supertrivia.dao.GameDAO
@@ -94,7 +95,9 @@ class ConfigGameFragment : Fragment() {
 
     fun startGame(difficulty: Difficulty, category: Category?) {
         val gameDao = GameDAO()
+        (activity as MainActivity).showLoading(true)
         gameDao.start(getToken(), difficulty.value, category?.id.toString()) { response ->
+            (activity as MainActivity).showLoading(false)
             requireContext()
                 .getSharedPreferences("game", Context.MODE_PRIVATE)
                 .edit()

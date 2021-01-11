@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.juuhgouvea.supertrivia.MainActivity
 import com.juuhgouvea.supertrivia.R
 import com.juuhgouvea.supertrivia.adapters.AnswerAdapter
 import com.juuhgouvea.supertrivia.dao.AnswerDAO
@@ -30,6 +31,7 @@ class GameFragment : Fragment() {
         if(!isConfigured() || !isPlaying()) {
             findNavController().popBackStack(R.id.gameFragment, true)
             findNavController().navigate(R.id.configGameFragment)
+            return view
         }
 
         view.listAnswer.adapter = answerAdapter
@@ -98,7 +100,9 @@ class GameFragment : Fragment() {
             return
         }
 
+        (activity as MainActivity).showLoading(true)
         answerDao.answer(token, selectedAnswer.order) { response ->
+            (activity as MainActivity).showLoading(false)
             val isCorrect = response.data.answer.correctAnswer.order == selectedAnswer.order
             val score = response.data.answer.score
 
@@ -121,12 +125,17 @@ class GameFragment : Fragment() {
         val token = getToken()
 
         if(hasOpenProblem()) {
+            (activity as MainActivity).showLoading(true)
+
             problemDao.view(token!!) { response ->
+                (activity as MainActivity).showLoading(false)
                 view.lbProblem.text = formatHtml(response.data.problem.question)
                 answerAdapter.updateList(response.data.problem.answers)
             }
         } else {
+            (activity as MainActivity).showLoading(true)
             problemDao.next(token!!) { response ->
+                (activity as MainActivity).showLoading(false)
                 view.lbProblem.text = formatHtml(response.data.problem.question)
                 answerAdapter.updateList(response.data.problem.answers)
 

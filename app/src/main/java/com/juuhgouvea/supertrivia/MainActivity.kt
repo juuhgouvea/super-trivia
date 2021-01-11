@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.loaderContainer
 
 class MainActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
+    private var loaderModal: View? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,6 +25,11 @@ class MainActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
         toolbar.setOnMenuItemClickListener(this)
 
         bottomNavigation.setupWithNavController(findNavController(R.id.navHostFragment))
+        this.loaderModal = loaderContainer
+    }
+
+    fun showLoading(isVisible: Boolean) {
+        this.loaderContainer.visibility = if(isVisible) View.VISIBLE else View.GONE
     }
 
     fun goToLogin() {

@@ -4,19 +4,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.juuhgouvea.supertrivia.MainActivity
 import com.juuhgouvea.supertrivia.R
 import com.juuhgouvea.supertrivia.dao.RankingDAO
+import com.juuhgouvea.supertrivia.fragments.RankingFragment
 import com.juuhgouvea.supertrivia.models.RankingPosition
 import kotlinx.android.synthetic.main.item_ranking.view.*
 
-class RankingAdapter: RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
+class RankingAdapter(context: RankingFragment): RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
     private var rankingDao = RankingDAO()
     private var ranking: List<RankingPosition> = listOf()
 
     override fun getItemCount() = ranking.size
 
     init {
+        (context.activity as MainActivity).showLoading(true)
         rankingDao.getAll { response ->
+            (context.activity as MainActivity).showLoading(false)
             ranking = response.data.ranking
             notifyDataSetChanged()
         }

@@ -17,7 +17,7 @@ class RankingFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_ranking, container, false)
 
-        val rankingAdapter = RankingAdapter()
+        val rankingAdapter = RankingAdapter(this)
         view.listRanking.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         view.listRanking.adapter = rankingAdapter
 

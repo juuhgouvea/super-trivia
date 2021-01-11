@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.juuhgouvea.supertrivia.MainActivity
 import com.juuhgouvea.supertrivia.R
 import com.juuhgouvea.supertrivia.dao.GameDAO
 import kotlinx.android.synthetic.main.fragment_ask_to_continue.view.*
@@ -51,7 +52,9 @@ class AskToContinueFragment : Fragment() {
     }
 
     fun finishGame() {
+        (activity as MainActivity).showLoading(true)
         gameDao.finish(getToken()) { response ->
+            (activity as MainActivity).showLoading(false)
             saveResults(
                 response.data.game.status,
                 response.data.game.startedAt,
